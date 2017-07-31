@@ -146,7 +146,7 @@ class Screen(metaclass=Singleton):
             res = cv2.matchTemplate(self.screen, p, cv2.TM_CCOEFF_NORMED)
             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
             if max_val > 0.8:
-                self._click(x, y)
+                self._click(x + offset[0], y + offset[1])
 
     def have(self, name, loader=_imageLoader):
         return self.chances_of(name, loader) > 0.8

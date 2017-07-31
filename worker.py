@@ -77,27 +77,31 @@ class Worker(threading.Thread):
                 screen.click_on('yaoguaifaxian_hard_unactive')
                 time.sleep(1)
             if screen.have('yaoguaifaxian_16'):
-                screen
+                screen.click_on('yaoguaifaxian_16')
             if screen.have('yaoguaifaxian_hard_actived'):
                 screen.click_on('yaoguaifaxian_explore', repeat=True)
                 while True:
-                    if screen.have('boss_fight'):
-                        screen.click_on('boss_fight')
-                    if screen.have('xiaoguai_fight'):
-                        screen.click_on('xiaoguai_fight')
+                    if screen.have('yaoguaifaxian_boss_fight'):
+                        screen.click_on('yaoguaifaxian_boss_fight')
+                    if screen.have('yaoguaifaxian_xiaoguai_fight'):
+                        screen.click_on('yaoguaifaxian_xiaoguai_fight')
                     if screen.have('shoudong') or screen.have('zidong'):
+                        if screen.have('shoudong'):
+                            screen.click_on('shoudong', repeat=True)
                         screen.click_on('yaoguaifaxian_win', repeat=True)
                         screen.click_on('yaoguaifaxian_damo', repeat=True)
                         screen.click_on('yaoguaifaxian_damo1', repeat=True)
                     if screen.have('yaoguaifaxian_xiangzi'):
                         screen.click_on('yaoguaifaxian_xiangzi', repeat=True)
-                        screen.click_on('yaoguaifaxian_huodejiangli', repeat=False, offset=(350, 350))
+                        screen.click_on('yaoguaifaxian_huodejiangli', repeat=False, offset=(-350, 350))
                     if screen.have('yaoguaifaxian_right'):
                         if direction == "right":
                             screen.click_on("yaoguaifaxian_right")
+                            time.sleep(1.5)
                             right_counter += 1
                         elif direction == "left":
                             screen.click_on("yaoguaifaxian_left")
+                            time.sleep(1.5)
                             left_counter += 1
                     if screen.have('yaoguaifaxian_over'):
                         break
