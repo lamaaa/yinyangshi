@@ -108,7 +108,31 @@ class Screen(metaclass=Singleton):
         p = loader.get(name)
         pass
 
+    def drag_to(self, name, loader=_imageLoader, offset=(0, 0)):
+        if GameStatus().game_stage == GameStage.Stopped:
+            return
+        self.log('try drag' + name)
+        p = loader.get(name)
+        max_val = 0
+        x, y = 0, 0
+        while max_val < 0.8:
+            if GameStatus().game_stage == GameStage.Stopped:
+                return
 
+            self.capture()
+            res = cv2.matchTemplate(self.screen, p, cv2.TM_CCOEFF_NORMED)
+            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+            self.log(name + ' ' + str(max_val))
+            x, y = max_loc
+            time.sleep(self._delay)
+
+        m, n, q = p.shape
+
+        x += n / 2
+        y += m / 2
+
+        pyautogui.moveTo(x, y, 0)
+        pyautogui.dragTo(0, 200)
 
 
     def click_on(self, name, repeat=False, loader=_imageLoader, offset=(0, 0)):

@@ -80,17 +80,30 @@ class Worker(threading.Thread):
                 screen.click_on('yaoguaifaxian_16')
             if screen.have('yaoguaifaxian_hard_actived'):
                 screen.click_on('yaoguaifaxian_explore', repeat=True)
+                time.sleep(3)
                 while True:
+                    if screen.have('yaoguaifaxian_unlock'):
+                        screen.click_on('yaoguaifaxian_unlock')
                     if screen.have('yaoguaifaxian_boss_fight'):
                         screen.click_on('yaoguaifaxian_boss_fight')
+                        time.sleep(2)
                     if screen.have('yaoguaifaxian_xiaoguai_fight'):
                         screen.click_on('yaoguaifaxian_xiaoguai_fight')
-                    if screen.have('shoudong') or screen.have('zidong'):
-                        if screen.have('shoudong'):
-                            screen.click_on('shoudong', repeat=True)
-                        screen.click_on('yaoguaifaxian_win', repeat=True)
-                        screen.click_on('yaoguaifaxian_damo', repeat=True)
-                        screen.click_on('yaoguaifaxian_damo1', repeat=True)
+                        time.sleep(2)
+                    if screen.have('shoudong') or screen.have('zidong') or screen.have('zhunbei'):
+                        while True:
+                            if screen.have('zhunbei'):
+                                screen.click_on('zhunbei', repeat=True)
+                            if screen.have('shoudong'):
+                                screen.click_on('shoudong', repeat=True)
+                            if screen.have('yaoguaifaxian_win'):
+                                screen.click_on('yaoguaifaxian_win', repeat=True)
+                                screen.click_on('yaoguaifaxian_damo', repeat=True)
+                                screen.click_on('yaoguaifaxian_damo1', repeat=True)
+                                break
+                            elif screen.have('yaoguaifaxian_lose'):
+                                screen.click_on('yaoguaifaxian_lose', repeat=True)
+                                break
                     if screen.have('yaoguaifaxian_xiangzi'):
                         screen.click_on('yaoguaifaxian_xiangzi', repeat=True)
                         screen.click_on('yaoguaifaxian_huodejiangli', repeat=False, offset=(-350, 350))
