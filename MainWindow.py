@@ -17,32 +17,21 @@ class MainWindow(QMainWindow):
         self.move(300, 300)
         self.setWindowTitle('刷起来')
         self.setWindowIcon(QIcon('icon.ico'))
-
+        self.imagesPath = "./images/tp14/"
         self.toolBar = self.addToolBar('')
 
         GameStatus().window = self
 
-        loop_action = QAction(QIcon('./images/ui/loop.png'), 'Loop', self)
-        loop_action.triggered.connect(self.start_loop)
-
-        continue_action = QAction(QIcon('./images/ui/continue.png'), 'Continue', self)
-        continue_action.triggered.connect(self.continue_loop)
-
-        once_action = QAction(QIcon('./images/ui/one.jpg'), 'Once', self)
-        once_action.triggered.connect(self.quit_on_complete)
+        yaoguaifaxian_action = QAction(QIcon('./images/ui/yaoguaifaxian.jpg'), '妖怪发现', self)
+        yaoguaifaxian_action.triggered.connect(self.yaoguaifaxian)
 
         exit_action = QAction(QIcon('./images/ui/exit.png'), 'Exit', self)
         exit_action.setShortcut('Ctrl+Q')
         exit_action.triggered.connect(self.stop_loop)
 
-        inspect_action = QAction(QIcon('./images/ui/inspect.jpg'), 'Inspect', self)
-        inspect_action.triggered.connect(self.inspect)
 
-        self.toolBar.addAction(loop_action)
-        self.toolBar.addAction(continue_action)
-        self.toolBar.addAction(once_action)
+        self.toolBar.addAction(yaoguaifaxian_action)
         self.toolBar.addAction(exit_action)
-        self.toolBar.addAction(inspect_action)
 
         txt = QTextBrowser()
         txt.setContentsMargins(5, 5, 5, 5)
@@ -67,20 +56,12 @@ class MainWindow(QMainWindow):
         else:
             self.statusBar().showMessage("当前次数： " + str(self.worker.cnt))
 
-    def start_loop(self):
+    def yaoguaifaxian(self):
         if self.worker is not None and not self.worker.stopped():
             return
 
-        self.worker = Worker()
-        GameStatus().game_stage = GameStage.BeforeFight
-        self.worker.start()
-
-    def continue_loop(self):
-        if self.worker is not None and not self.worker.stopped():
-            return
-
-        self.worker = Worker()
-        GameStatus().game_stage = GameStage.Fighting
+        self.worker = Worker(self.imagesPath)
+        GameStatus().game_stage = GameStage.Yaoguaifaxian
         self.worker.start()
 
     def stop_loop(self):
@@ -88,10 +69,3 @@ class MainWindow(QMainWindow):
             return
         self.worker.stop()
 
-    def quit_on_complete(self):
-        if self.worker is None:
-            return
-        self.worker.quit_on_complete()
-
-    def inspect(self):
-        Screen().get_cards()

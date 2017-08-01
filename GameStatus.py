@@ -8,6 +8,8 @@ class GameStage(Enum):
     Fighting = 2
     AfterFight = 3
     Stopped = 4
+    Yaoguaifaxian = 5
+    Yunhun_dashe = 6
 
 
 class GameStatus(metaclass=Singleton):

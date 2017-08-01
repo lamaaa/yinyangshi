@@ -15,8 +15,7 @@ from ImageLoader import ImageLoader
 
 class Screen(metaclass=Singleton):
     _delay = 0.3
-    _imageLoader = ImageLoader('image/')
-    # _skills = ImageLoader('image/skills/')
+    _imageLoader = ImageLoader('images/')
     target = ImageLoader('./', need_scale=False)
 
     @staticmethod
