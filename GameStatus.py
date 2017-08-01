@@ -4,12 +4,9 @@ from Singleton import *
 
 
 class GameStage(Enum):
-    BeforeFight = 1
-    Fighting = 2
-    AfterFight = 3
     Stopped = 4
-    Yaoguaifaxian = 5
-    Yunhun_dashe = 6
+    Yaoguaifaxian = 1
+    Yunhun_dashe = 2
 
 
 class GameStatus(metaclass=Singleton):
