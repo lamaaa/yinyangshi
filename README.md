@@ -2,7 +2,7 @@
 
 依赖PyQt5, PyAutoGUI, opencv_python
 另外安装Python for Windows Extensions [](https://sourceforge.net/projects/pywin32/)
-阴阳师（Fate/Grand Order）自动刷图脚本，并不保证能赢。
+阴阳师自动刷图脚本，并不保证能赢。
 
 建议使用逍遥安卓玩模拟器。
 
