@@ -23,6 +23,9 @@ class Worker(threading.Thread):
         GameStatus().game_stage = GameStage.Stopped
         self._stop.set()
 
+    def stopped(self):
+        return self._stop.is_set()
+
     def run(self):
         GameStatus().window.status_changed()
         screen = self.screen

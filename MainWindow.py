@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         yaoguaifaxian_action = QAction(QIcon('./images/ui/yaoguaifaxian.jpg'), '妖怪发现', self)
         yaoguaifaxian_action.triggered.connect(self.yaoguaifaxian)
 
-        exit_action = QAction(QIcon('./images/ui/exit.png'), 'Exit', self)
+        exit_action = QAction(QIcon('./images/ui/exit.png'), '停止', self)
         exit_action.setShortcut('Ctrl+Q')
         exit_action.triggered.connect(self.stop_loop)
 
